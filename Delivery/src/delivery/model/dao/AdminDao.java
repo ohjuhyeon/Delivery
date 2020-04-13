@@ -161,4 +161,20 @@ public class AdminDao {
 		return result;
 	}
 
+	public int deleteBlackList(int deleteBlackListNo, Connection conn) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+
+		String query = prop.getProperty("deleteBlackList");
+
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, deleteBlackListNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 }

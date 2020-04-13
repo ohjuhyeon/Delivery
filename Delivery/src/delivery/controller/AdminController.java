@@ -69,4 +69,17 @@ public class AdminController {
 
 	}
 
+	public void deleteBlackList(int deleteBlackListNo) {
+		DeliveryMenu menu = new DeliveryMenu();
+		int result;
+
+		result = new AdminService().deleteBlackList(deleteBlackListNo);
+		if (result > 0) {
+			menu.displaySuccess("블랙리스트 삭제 성공");
+		} else {
+			menu.displayError("블랙리스트 삭제 실패");
+		}
+
+	}
+
 }

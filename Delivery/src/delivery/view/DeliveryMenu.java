@@ -106,10 +106,10 @@ public class DeliveryMenu {
 
 		switch (sc.nextInt()) {
 		case 1:
-			this.SignUpOwner();
+			oc.insertOwner(this.SignUpOwner());
 			break;
 		case 2:
-			this.SignUpCustomer();
+			cc.insertCustomer(this.SignUpCustomer());
 			break;
 		default:
 			System.out.println("잘못 입력하셨습니다.");
@@ -120,40 +120,51 @@ public class DeliveryMenu {
 	public Owner SignUpOwner() {
 
 		Owner owner = new Owner();
+
 		System.out.print("점주 이름 > ");
 		owner.setCeoName(sc.next());
-		System.out.print("아이디 > ");
+
+		System.out.print("점주 아이디 > ");
 		owner.setStrId(sc.next());
+
 		System.out.print("비밀번호 > ");
 		owner.setStrPwd(sc.next());
+
 		System.out.print("가게 이름> ");
 		owner.setStrName(sc.next());
+
 		System.out.print("가게 주소 > ");
 		sc.nextLine();
 		owner.setStrAddr(sc.nextLine());
+
 		System.out.print("가게 전화번호 > ");
 		owner.setStrPhone(sc.next());
+
 		System.out.print("카테고리 > ");
 		owner.setCategory(sc.next());
-		System.out.print("메뉴번호 > ");
-		owner.setStrNo(sc.nextInt());
+
 		return owner;
 	}
 
 	private Customer SignUpCustomer() {
 
 		Customer customer = new Customer();
+
 		System.out.print("회원 이름 > ");
 		customer.setCusName(sc.next());
+
 		System.out.print("아이디 > ");
 		customer.setCusId(sc.next());
+
 		System.out.print("비밀번호 > ");
 		customer.setCusPwd(sc.next());
-		System.out.print("전화번호 > ");
-		customer.setCusPhone(sc.next());
+
 		System.out.print("주소 > ");
 		sc.nextLine();
-		customer.setCusPhone(sc.nextLine());
+		customer.setCusAddr(sc.nextLine());
+
+		System.out.print("전화번호 > ");
+		customer.setCusPhone(sc.next());
 
 		return customer;
 	}
@@ -162,17 +173,24 @@ public class DeliveryMenu {
 		System.out.println("────관리자 메뉴────");
 		System.out.println("1.회원관리 메뉴");
 		System.out.println("2.가게관리 메뉴");
+		System.out.println("3.메인메뉴로 가기");
 		System.out.print("선택 > ");
 
 		switch (sc.nextInt()) {
 		case 1:
 			CustomerManageMenu();
+			AdminMenu();
 			break;
 		case 2:
 			StoreManageMenu();
+			AdminMenu();
+			break;
+		case 3:
+			Menu();
 			break;
 		default:
 			System.out.println("잘못 입력하셨습니다.");
+			AdminMenu();
 			break;
 		}
 
@@ -198,7 +216,6 @@ public class DeliveryMenu {
 			break;
 		case 5:
 			break;
-
 		default:
 			System.out.println("잘못 입력하셨습니다.");
 			break;
@@ -236,12 +253,18 @@ public class DeliveryMenu {
 			ac.insertBlackList(this.insertBlackList());
 			break;
 		case 7:
+			ac.deleteBlackList(this.deleteBlackListNo());
 			break;
 		default:
 			System.out.println("잘못 입력하셨습니다.");
 			break;
 		}
 
+	}
+
+	private int deleteBlackListNo() {
+		System.out.println("지우실 블랙리스트번호를 입력 해주세요");
+		return sc.nextInt();
 	}
 
 	private BlackList insertBlackList() {

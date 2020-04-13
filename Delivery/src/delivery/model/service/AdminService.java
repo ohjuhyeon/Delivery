@@ -100,4 +100,23 @@ public class AdminService {
 		return result;
 	}
 
+	public int deleteBlackList(int deleteBlackListNo) {
+		Connection conn = null;
+		int result = 0;
+		try {
+			conn = factory.createConnection();
+			result = new AdminDao().deleteBlackList(deleteBlackListNo, conn);
+
+			if (result > 0)
+				factory.commit(conn);
+			else
+				factory.rollback(conn);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			factory.close(conn);
+		}
+		return result;
+	}
+
 }
